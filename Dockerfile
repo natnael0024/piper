@@ -69,6 +69,10 @@ COPY . /var/www/html
 COPY apache2.conf /etc/apache2/apache2.conf
 COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
+# n
+CMD ["composer update", "php artisan migrate","apache2-foreground"]
+# /
+
 RUN composer install
 RUN chown -R www-data:www-data /var/www/html/storage
 RUN chmod -R 777 /var/www/html/storage
