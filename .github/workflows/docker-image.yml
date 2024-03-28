@@ -18,5 +18,5 @@ jobs:
     - name: Push Docker image to Docker Hub
       run: |
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-          docker tag natnael0024/piper:latest
-          docker-compose push
+          # docker tag natnael0024/piper:latest
+          docker-compose push natnael0024/piper:latest
