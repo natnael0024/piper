@@ -4,6 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: natnael0024/piper:latest
     ports:
       - 80:80
     volumes:
