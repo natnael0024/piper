@@ -62,12 +62,17 @@ RUN apt-get update && apt-get install -y \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Remove default Apache2 configuration
+RUN rm -f /etc/apache2/apache2.conf
+RUN rm -rf /etc/apache2/sites-enabled
+
+# Copy your Apache2 configuration files
+COPY apache2.conf /etc/apache2/apache2.conf
+COPY sites-enabled/ /etc/apache2/sites-enabled/
+
 WORKDIR /var/www/html
 
 COPY . /var/www/html
-
-COPY apache2.conf /etc/apache2/apache2.conf
-COPY 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 
 RUN composer install
 RUN chown -R www-data:www-data /var/www/html/storage
